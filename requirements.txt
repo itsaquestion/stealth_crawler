@@ -6,3 +6,6 @@ lxml_html_clean
 fastapi
 uvicorn
 gunicorn
+twikit
+openai
+python-dotenv
