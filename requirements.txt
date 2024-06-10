@@ -1,0 +1,8 @@
+selenium
+selenium-stealth
+readability-lxml
+markdownify
+lxml_html_clean
+fastapi
+uvicorn
+gunicorn

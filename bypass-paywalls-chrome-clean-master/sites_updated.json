@@ -1,0 +1,90 @@
+{
+  "Courrier international": {
+    "domain": "courrierinternational.com",
+    "allow_cookies": 1,
+    "useragent": "googlebot",
+    "ld_archive_is": "div#bloc_paywall|article",
+    "upd_version": "3.7.0.5"
+  },
+  "Dagens Medicin": {
+    "domain": "dagensmedicin.se",
+    "allow_cookies": 1,
+    "useragent": "googlebot",
+    "upd_version": "3.6.9.3"
+  },
+  "Financial News (London)": {
+    "domain": "fnlondon.com",
+    "allow_cookies": 1,
+    "block_regex": "cdn\\.cxense\\.com",
+    "ld_archive_is": "div[data-testid='articleSignInSubscribeWrapper']|article",
+    "upd_version": "3.6.8.6"
+  },
+  "Grupo Clarín": {
+    "domain": "###_ar_grupo_clarin",
+    "group": [
+      "clarin.com",
+      "lavoz.com.ar",
+      "losandes.com.ar"
+    ],
+    "allow_cookies": 1,
+    "block_regex": "\\.clarin\\.com\\/.+\\/(meter|zonda-).*\\.js",
+    "exception": [{
+        "domain": "lavoz.com.ar",
+        "allow_cookies": 1,
+        "block_regex": "cdn\\.wyleex\\.com\\/lavoz\\/pw\\.min\\.js"
+      }, {
+        "domain": "losandes.com.ar",
+        "allow_cookies": 1,
+        "block_regex": "cdn\\.lavoz\\.com\\.ar\\/sites\\/.+\\/paywall\\/losandes\\/pw\\.js"
+      }
+    ],
+    "upd_version": "3.6.8.1"
+  },
+  "Malayala Manorama": {
+    "domain": "manoramaonline.com",
+    "allow_cookies": 1,
+    "block_regex": "cdn\\.ampproject\\.org\\/v\\d\\/amp-access-.+\\.js",
+    "amp_redirect": "ev-engagement",
+    "amp_unhide": 1,
+    "cs_code": "[{\"cond\":\"div[amp-access^=\\\"result='REQUIRE_\\\"]\", \"rm_elem\":1}]",
+    "upd_version": "3.7.1.1"
+  },
+  "Mediahuis Nederland Regional": {
+    "domain": "###_nl_mediahuis_region",
+    "group": [
+      "gooieneemlander.nl",
+      "haarlemsdagblad.nl",
+      "ijmuidercourant.nl",
+      "leidschdagblad.nl",
+      "noordhollandsdagblad.nl"
+    ],
+    "allow_cookies": 1,
+    "ld_archive_is": "div[data-auth-root='paywall']|div[data-mht-block='article-detail__article-main']|div[id$='article-main']",
+    "upd_version": "3.6.8.2"
+  },
+  "Private Equity News (removed)": {
+    "domain": "penews.com",
+    "allow_cookies": 1,
+    "nofix": 1,
+    "upd_version": "3.6.9.3"
+  },
+  "ScienceNews.org": {
+    "domain": "sciencenews.org",
+    "remove_cookies_select_drop": ["blaize_session"],
+    "upd_version": "3.7.0.8"
+  },
+  "Scholastic": {
+    "domain": "scholastic.com",
+    "allow_cookies": 1,
+    "cs_code": "[{\"cond\":\"div.paywallModalElement\", \"rm_elem\":1, \"elems\":[{\"cond\":\"body.modal-open\", \"rm_attrib\":\"class\"}, {\"cond\":\"div.modal-backdrop\", \"rm_elem\":1}]}]",
+    "upd_version": "3.6.9.2"
+  },
+  "The New York Times": {
+    "domain": "nytimes.com",
+    "allow_cookies": 1,
+    "block_regex": "(\\.nytimes\\.com\\/meter\\.js|mwcm\\.nyt\\.com\\/.+\\.js|cooking\\.nytimes\\.com\\/api\\/.+\\/access)",
+    "useragent": "googlebot",
+	"cs_code": "[{\"cond\":\"DIV[id^='slideup-']\", \"rm_elem_wait\":1}, {\"cond\":\"div[id*='overlay']\", \"rm_elem\":1}, {\"cond\":\"body\", \"set_attrib\":\"style|overflow:visible;position:relative\"}]",
+    "upd_version": "3.6.8.3"
+  }
+}
