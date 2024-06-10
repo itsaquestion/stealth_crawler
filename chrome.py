@@ -5,7 +5,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium_stealth import stealth
 
 from utils import get_absolute_path
-from html_to_md import html_to_md, get_short_title
+from html_to_md import parse
 
 
 def init_chrome(chrome_driver_path = None, chrome_binary_path = None, extension_path = None):
@@ -45,7 +45,7 @@ def init_chrome(chrome_driver_path = None, chrome_binary_path = None, extension_
     return driver
     
     
-def get(url, delay_sec = 0.5, slow_mode = False, use_md = True):
+def get(url, delay_sec = 0.5, slow_mode = False):
 
     try:
         # Create a new instance of the Chrome driver
@@ -74,14 +74,12 @@ def get(url, delay_sec = 0.5, slow_mode = False, use_md = True):
             sleep(delay_sec/2)
             # driver.save_screenshot('temp.png')
         
-        body = driver.page_source
-        if use_md:
-            print('[use markdown]')
-            body = html_to_md(body)
+        page_html = driver.page_source
+        
+        result = parse(page_html)
+        result['url'] = url
             
-        return {'title':get_short_title(driver.page_source), 
-                'url':url,
-                'body':body}
+        return result
     
     except Exception as e:
         print(f"An error occurred: {e}")

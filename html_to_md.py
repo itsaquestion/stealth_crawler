@@ -18,15 +18,22 @@ def get_short_title(html):
     title = doc.short_title()
     return title
 
-def html_to_md(html):
+def parse(page_html):
+    doc = Document(page_html)
+    # summary = doc.summary()
+    title = doc.short_title()
+    summary = doc.summary()
+    
+    markdown = html_to_md(summary, title)
+    
+    return {'title':title, 'html':summary, 'md':markdown}
+    
+
+def html_to_md(summary, title):
     """ 将html转换为markdown
     :param html:
     :return: markdown
     """
-    doc = Document(html)
-    summary = doc.summary()
-    title = doc.short_title()
-    
     markdown = md(summary).strip()
     
     if not markdown.startswith('# '):
