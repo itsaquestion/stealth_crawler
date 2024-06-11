@@ -3,6 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from selenium_stealth import stealth
+from selenium.common.exceptions import TimeoutException
 
 from utils import get_absolute_path, execute_shell_command
 from html_to_md import parse
@@ -44,21 +45,31 @@ def init_chrome(chrome_driver_path = None, chrome_binary_path = None, extension_
     
     return driver
     
-    
-def get(url, delay_sec = 0.5, slow_mode = False):
-    execute_shell_command('pkill -f "chrome"')
+
+def fetch(driver, url):
+    try:
+        driver.get(url)
+    except TimeoutException:
+        print("页面加载超时，继续")
+
+def get(url, delay_sec = 0.5, slow_mode = False, timeout_sec=15):
+    # execute_shell_command('pkill -f "chrome"')
 
     try:
         # Create a new instance of the Chrome driver
         print('[init driver]')
         driver = init_chrome(extension_path=get_absolute_path("./bypass-paywalls-chrome-clean-master/"))
 
+        driver.set_page_load_timeout(timeout_sec)
+        
         print('[get]')
+        
         if 'wsj.com' in url:
             print('[get0]')
-            driver.get('https://www.wsj.com/')
-            # sleep(1)
-        driver.get(url)
+            fetch(driver,'https://www.wsj.com/')
+            
+        fetch(driver, url)
+        
         title = driver.title
         print(title)
 
@@ -97,6 +108,6 @@ if __name__ == "__main__":
     #url = 'https://www.economist.com/culture/2024/06/06/new-zealand-is-changing-its-place-names'
     #url = 'https://www.wsj.com/lifestyle/gen-z-thinks-everyone-is-doing-the-heart-sign-wrong-efe4b194?mod=lifestyle_lead_pos2'
     
-    md = get_md(url,2)
+    md = get(url,2)
     with open('temp.md','w', encoding='utf-8') as f:
         f.write(md)
