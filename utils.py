@@ -1,5 +1,7 @@
 import re
 import os
+import subprocess
+
 def get_absolute_path(relative_path):
     """
     根据相对路径获取绝对路径
@@ -23,3 +25,11 @@ def get_protocol_and_domain(url):
     else:
         return None, None
     
+
+def execute_shell_command(command):
+    try:
+        # 使用subprocess.run()函数执行shell命令
+        subprocess.run(command, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    except Exception as e:
+        # 如果执行过程中发生异常,可以在这里处理
+        pass

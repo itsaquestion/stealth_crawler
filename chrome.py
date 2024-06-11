@@ -4,7 +4,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from selenium_stealth import stealth
 
-from utils import get_absolute_path
+from utils import get_absolute_path, execute_shell_command
 from html_to_md import parse
 
 
@@ -46,6 +46,7 @@ def init_chrome(chrome_driver_path = None, chrome_binary_path = None, extension_
     
     
 def get(url, delay_sec = 0.5, slow_mode = False):
+    execute_shell_command('pkill -f "chrome"')
 
     try:
         # Create a new instance of the Chrome driver

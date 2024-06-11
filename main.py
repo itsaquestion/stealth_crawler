@@ -23,7 +23,7 @@ async def get_url(url: str):
     loop = asyncio.get_event_loop()
     get_fast = partial(get, delay_sec=0, slow_mode=False)
     try:
-        md = await asyncio.wait_for(loop.run_in_executor(None, get_fast, url), timeout=120)
+        md = await asyncio.wait_for(loop.run_in_executor(None, get_fast, url), timeout=180)
         return md
     except asyncio.TimeoutError:
         return {"error": "Timeout occurred"}
@@ -34,7 +34,7 @@ async def get_url(url: str):
     loop = asyncio.get_event_loop()
     get_slow = partial(get, delay_sec=1, slow_mode=True)
     try:
-        md = await asyncio.wait_for(loop.run_in_executor(None, get_slow, url), timeout=120)
+        md = await asyncio.wait_for(loop.run_in_executor(None, get_slow, url), timeout=180)
         return md
     except asyncio.TimeoutError:
         return {"error": "Timeout occurred"}
