@@ -21,7 +21,7 @@ app = FastAPI()
 async def get_url(url: str):
     print(f"URL: {url}")
     loop = asyncio.get_event_loop()
-    get_fast = partial(get, delay_sec=0, slow_mode=False)
+    get_fast = partial(get, delay_sec=1, slow_mode=True)
     try:
         md = await asyncio.wait_for(loop.run_in_executor(None, get_fast, url), timeout=180)
         return md
@@ -32,7 +32,7 @@ async def get_url(url: str):
 async def get_url(url: str):
     print(f"URL: {url}")
     loop = asyncio.get_event_loop()
-    get_slow = partial(get, delay_sec=1, slow_mode=True)
+    get_slow = partial(get, delay_sec=5, slow_mode=True)
     try:
         md = await asyncio.wait_for(loop.run_in_executor(None, get_slow, url), timeout=180)
         return md

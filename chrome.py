@@ -75,7 +75,7 @@ def get(url, delay_sec = 0.5, slow_mode = False, timeout_sec=15):
 
         if slow_mode:
             # page down
-            print('[slow mode]')
+            print(f'[slow mode: {delay_sec} sec]')
             driver.execute_script("window.scrollBy(0, window.innerHeight);")
             
             sleep(delay_sec/2)
