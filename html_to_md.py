@@ -26,7 +26,10 @@ def parse(page_html):
     
     markdown = html_to_md(summary, title)
     
-    return {'title':title, 'html':summary, 'md':markdown}
+    return {'title':title, 
+            'original_html':page_html,
+            'htmlreadable_html':summary, 
+            'mdmarkdown_content':markdown}
     
 
 def html_to_md(summary, title):

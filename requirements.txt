@@ -9,3 +9,6 @@ gunicorn
 twikit
 openai
 python-dotenv
+aiohttp
+httpx
+pytest

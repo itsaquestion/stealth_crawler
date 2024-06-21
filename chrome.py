@@ -1,3 +1,4 @@
+import json
 from time import sleep
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -64,9 +65,9 @@ def get(url, delay_sec = 0.5, slow_mode = False, timeout_sec=15):
         
         print('[get]')
         
-        if 'wsj.com' in url:
-            print('[get0]')
-            fetch(driver,'https://www.wsj.com/')
+        # if 'wsj.com' in url:
+        #     print('[get0]')
+        #     fetch(driver,'https://www.wsj.com/')
             
         fetch(driver, url)
         
@@ -74,16 +75,18 @@ def get(url, delay_sec = 0.5, slow_mode = False, timeout_sec=15):
         print(title)
 
         if slow_mode:
-            # page down
             print(f'[slow mode: {delay_sec} sec]')
+            # page down
+            sleep(delay_sec/2)
+            
             driver.execute_script("window.scrollBy(0, window.innerHeight);")
             
             sleep(delay_sec/2)
-            driver.execute_script("window.scrollBy(0, window.innerHeight);")
+            
+            # driver.execute_script("window.scrollBy(0, window.innerHeight);")
             # end
-            # driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+            driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
             
-            sleep(delay_sec/2)
             # driver.save_screenshot('temp.png')
         
         page_html = driver.page_source
@@ -107,7 +110,8 @@ if __name__ == "__main__":
     url = 'https://time.com/6985605/how-to-stay-asleep/'
     #url = 'https://www.economist.com/culture/2024/06/06/new-zealand-is-changing-its-place-names'
     #url = 'https://www.wsj.com/lifestyle/gen-z-thinks-everyone-is-doing-the-heart-sign-wrong-efe4b194?mod=lifestyle_lead_pos2'
-    
+    url = 'https://www.sciencedirect.com/science/article/abs/pii/S0927537121000373'
     md = get(url,2)
-    with open('temp.md','w', encoding='utf-8') as f:
-        f.write(md)
+    with open('temp.json','w', encoding='utf-8') as f:
+        f.write(json.dumps(md, indent=2))
+    # print(md)

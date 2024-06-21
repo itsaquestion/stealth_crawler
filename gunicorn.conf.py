@@ -1,8 +1,12 @@
 import logging
 import sys
+import multiprocessing
+
+logical_cores = multiprocessing.cpu_count()
+print(f"{logical_cores=}")
 
 bind = '127.0.0.1:8000'
-workers = 1
+workers = logical_cores - 1
 backlog = 2048
 worker_class = 'uvicorn.workers.UvicornWorker'
 worker_connections = 1000
