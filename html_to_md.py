@@ -28,7 +28,7 @@ def parse(page_html):
     
     return {'title':title, 
             'original_html':page_html,
-            'htmlreadable_html':summary, 
+            'readable_html':summary, 
             'mdmarkdown_content':markdown}
     
 
