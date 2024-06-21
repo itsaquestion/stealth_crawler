@@ -94,7 +94,7 @@ def get(url, delay_sec = 0.5, slow_mode = False, timeout_sec=15):
         result = parse(page_html)
         result['url'] = url
             
-        return result
+        return json.dumps(result, indent = 2)
     
     except Exception as e:
         print(f"An error occurred: {e}")
@@ -114,4 +114,6 @@ if __name__ == "__main__":
     md = get(url,2)
     with open('temp.json','w', encoding='utf-8') as f:
         f.write(json.dumps(md, indent=2))
-    # print(md)
+    print(type(md))
+    import os
+    os.remove('temp.json')
